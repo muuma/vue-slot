@@ -69,6 +69,11 @@
         </template>
       </TodoList>
     </div>
+
+    <div class="slot-item">
+      这里再举一个特别的例子，动态渲染组件。其中 Tabs 组件用到了 vue-slot：
+      <Item :list="configList"></Item>
+    </div>
   </div>
 </template>
 
@@ -78,6 +83,8 @@ import SubmitButton from './components/SubmitButton.vue'
 import BaseLayout from './components/BaseLayout.vue'
 import CurrentUser from './components/CurrentUser.vue'
 import TodoList from './components/TodoList.vue'
+import Item from './components/tab/Item.vue'
+import Logo from './assets/logo.png'
 
 export default {
   name: 'app',
@@ -86,7 +93,8 @@ export default {
     SubmitButton,
     BaseLayout,
     CurrentUser,
-    TodoList
+    TodoList,
+    Item
   },
   data() {
     return {
@@ -108,6 +116,53 @@ export default {
           id: 3,
           text: 'Vue',
           isComplete: false
+        }
+      ],
+      configList: [
+        {
+          name: 'ItemImage',
+          config: {
+            url: Logo,
+            title: 'Item image'
+          }
+        },
+        {
+          name: 'ItemText',
+          config: {
+            text: 'Hi, I\'m vue-slot.'
+          }
+        },
+        {
+          name: 'ItemTabs',
+          config: {
+            tabs: [
+              {
+                id: 'tab_1',
+                name: 'tab1',
+                content: [
+                  {
+                    name: 'ItemImage',
+                    config: {
+                      url: Logo,
+                      title: 'Tabs image'
+                    }
+                  }
+                ]
+              },
+              {
+                id: 'tab_2',
+                name: 'tab2',
+                content: [
+                  {
+                    name: 'ItemText',
+                    config: {
+                      text: 'Hi, I\'m Tabs vue-slot.'
+                    }
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     }
